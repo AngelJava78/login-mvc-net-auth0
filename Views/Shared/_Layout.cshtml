@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Auth0 MVC Demo</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+<header>
+    <nav>
+        <a asp-controller="Home" asp-action="Index" class="brand">Auth0 MVC Demo</a>
+        <div class="nav-actions">
+            <a asp-controller="Home" asp-action="Index">Home</a>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <a asp-controller="Home" asp-action="Profile">Mi identidad</a>
+                <a class="button secondary" asp-controller="Account" asp-action="Logout">Logout</a>
+            }
+            else
+            {
+                <a class="button" asp-controller="Account" asp-action="Login">Login</a>
+            }
+        </div>
+    </nav>
+</header>
+<main>
+    @RenderBody()
+</main>
+</body>
+</html>

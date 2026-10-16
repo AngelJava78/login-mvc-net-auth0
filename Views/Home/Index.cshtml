@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Home";
+}
+<section class="hero">
+    <span class="eyebrow">ASP.NET Core MVC · .NET 10 · Auth0</span>
+    <h1>Aprendiendo autenticación con Auth0</h1>
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <p>La aplicación reconoce una sesión autenticada para <strong>@User.Identity.Name</strong>.</p>
+        <div class="actions">
+            <a class="button" asp-action="Profile">Ver claims</a>
+            <a class="button secondary" asp-controller="Account" asp-action="Logout">Logout</a>
+        </div>
+    }
+    else
+    {
+        <p>Aún no existe una sesión autenticada. El botón Login te redirige al Universal Login de Auth0.</p>
+        <a class="button" asp-controller="Account" asp-action="Login">Login con Auth0</a>
+    }
+</section>
+<section class="card">
+    <h2>Flujo de este ejemplo</h2>
+    <p>Usuario → Aplicación MVC → Auth0 → Aplicación MVC → cookie de autenticación.</p>
+    <p>SQL Server no participa todavía porque no estamos guardando información propia de negocio.</p>
+</section>
