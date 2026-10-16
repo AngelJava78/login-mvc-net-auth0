@@ -35,7 +35,14 @@ public class UsersController : Controller
         if (!ModelState.IsValid)
             return View(request);
 
-        await _usersApiService.CreateAsync(request);
+        var error = await _usersApiService.CreateAsync(request);
+
+        if (error is not null)
+        {
+            ModelState.AddModelError(string.Empty, error);
+            return View(request);
+        }
+
         return RedirectToAction(nameof(Index));
     }
 
