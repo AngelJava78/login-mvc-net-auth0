@@ -7,11 +7,6 @@ public class UpdateUserDto
     public int Id { get; set; }
 
     [Required]
-    [MaxLength(200)]
-    [Display(Name = "Auth0 User ID")]
-    public string Auth0UserId { get; set; } = string.Empty;
-
-    [Required]
     [MaxLength(150)]
     [Display(Name = "Nombre")]
     public string Name { get; set; } = string.Empty;

@@ -50,7 +50,6 @@ public class UsersController : Controller
         var model = new UpdateUserDto
         {
             Id = user.Id,
-            Auth0UserId = user.Auth0UserId,
             Name = user.Name,
             Email = user.Email,
             IsActive = user.IsActive

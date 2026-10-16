@@ -4,15 +4,12 @@
 }
 
 <div class="form-page">
-    <span class="eyebrow">API REST</span>
+    <span class="eyebrow">API REST + Auth0</span>
     <h2>Nuevo usuario</h2>
+    <p>La identidad se creará en Auth0. El Auth0 User ID será generado automáticamente por Auth0 y guardado por la API.</p>
 
     <form asp-action="Create" method="post" class="card form-card">
         <div asp-validation-summary="ModelOnly" class="validation"></div>
-
-        <label asp-for="Auth0UserId"></label>
-        <input asp-for="Auth0UserId" />
-        <span asp-validation-for="Auth0UserId" class="validation"></span>
 
         <label asp-for="Name"></label>
         <input asp-for="Name" />
@@ -21,6 +18,11 @@
         <label asp-for="Email"></label>
         <input asp-for="Email" />
         <span asp-validation-for="Email" class="validation"></span>
+
+        <label asp-for="Password"></label>
+        <input asp-for="Password" />
+        <span asp-validation-for="Password" class="validation"></span>
+        <small>La contraseña se envía a la API para crear el usuario en Auth0. La MVC no la almacena.</small>
 
         <label class="checkbox-row">
             <input asp-for="IsActive" />

@@ -5,11 +5,6 @@ namespace Auth0MvcDemo.DTOs;
 public class CreateUserDto
 {
     [Required]
-    [MaxLength(200)]
-    [Display(Name = "Auth0 User ID")]
-    public string Auth0UserId { get; set; } = string.Empty;
-
-    [Required]
     [MaxLength(150)]
     [Display(Name = "Nombre")]
     public string Name { get; set; } = string.Empty;
@@ -19,6 +14,11 @@ public class CreateUserDto
     [MaxLength(320)]
     [Display(Name = "Correo electrónico")]
     public string Email { get; set; } = string.Empty;
+
+    [Required]
+    [DataType(DataType.Password)]
+    [Display(Name = "Contraseña")]
+    public string Password { get; set; } = string.Empty;
 
     [Display(Name = "Activo")]
     public bool IsActive { get; set; } = true;

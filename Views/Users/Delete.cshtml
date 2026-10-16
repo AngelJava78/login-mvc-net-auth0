@@ -15,7 +15,7 @@
             <dt>Email</dt>
             <dd>@Model.Email</dd>
             <dt>Auth0 ID</dt>
-            <dd>@Model.Auth0UserId</dd>
+            <dd>@(string.IsNullOrWhiteSpace(Model.Auth0UserId) ? "Sin vincular" : Model.Auth0UserId)</dd>
             <dt>Activo</dt>
             <dd>@(Model.IsActive ? "Sí" : "No")</dd>
         </dl>

@@ -5,9 +5,9 @@
 
 <div class="page-header">
     <div>
-        <span class="eyebrow">API REST</span>
+        <span class="eyebrow">API REST + Auth0</span>
         <h2>Usuarios</h2>
-        <p>Estos datos se obtienen desde la API configurada en <code>UsersApi:BaseUrl</code>.</p>
+        <p>Los datos se obtienen desde la API configurada en <code>UsersApi:BaseUrl</code>. El Auth0 User ID lo genera Auth0 durante el alta.</p>
     </div>
     <a class="button" asp-action="Create">Nuevo usuario</a>
 </div>
@@ -35,7 +35,7 @@
             {
                 <tr>
                     <td>@user.Id</td>
-                    <td>@user.Auth0UserId</td>
+                    <td>@(string.IsNullOrWhiteSpace(user.Auth0UserId) ? "Sin vincular" : user.Auth0UserId)</td>
                     <td>@user.Name</td>
                     <td>@user.Email</td>
                     <td>@(user.IsActive ? "Sí" : "No")</td>
