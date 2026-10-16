@@ -19,6 +19,14 @@ builder.Services.AddHttpClient<IBooksApiService, BooksApiService>(client =>
     client.BaseAddress = new Uri(baseUrl);
 });
 
+builder.Services.AddHttpClient<IUsersApiService, UsersApiService>(client =>
+{
+    var baseUrl = builder.Configuration["UsersApi:BaseUrl"]
+        ?? throw new InvalidOperationException("UsersApi:BaseUrl no está configurado.");
+
+    client.BaseAddress = new Uri(baseUrl);
+});
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())

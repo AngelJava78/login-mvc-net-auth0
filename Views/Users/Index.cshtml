@@ -1,0 +1,51 @@
+@model IReadOnlyList<Auth0MvcDemo.DTOs.UserDto>
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<div class="page-header">
+    <div>
+        <span class="eyebrow">API REST</span>
+        <h2>Usuarios</h2>
+        <p>Estos datos se obtienen desde la API configurada en <code>UsersApi:BaseUrl</code>.</p>
+    </div>
+    <a class="button" asp-action="Create">Nuevo usuario</a>
+</div>
+
+<div class="card">
+    @if (Model.Count == 0)
+    {
+        <p>No hay usuarios registrados.</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Auth0 User ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Activo</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Auth0UserId</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@(user.IsActive ? "Sí" : "No")</td>
+                    <td class="table-actions">
+                        <a asp-action="Edit" asp-route-id="@user.Id">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@user.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>
