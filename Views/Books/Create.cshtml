@@ -1,0 +1,30 @@
+@model Auth0MvcDemo.DTOs.CreateBookDto
+@{
+    ViewData["Title"] = "Nuevo libro";
+}
+
+<div class="form-page">
+    <span class="eyebrow">API REST</span>
+    <h2>Nuevo libro</h2>
+
+    <form asp-action="Create" method="post" class="card form-card">
+        <div asp-validation-summary="ModelOnly" class="validation"></div>
+
+        <label asp-for="Title"></label>
+        <input asp-for="Title" />
+        <span asp-validation-for="Title" class="validation"></span>
+
+        <label asp-for="Author"></label>
+        <input asp-for="Author" />
+        <span asp-validation-for="Author" class="validation"></span>
+
+        <label asp-for="PublicationYear"></label>
+        <input asp-for="PublicationYear" />
+        <span asp-validation-for="PublicationYear" class="validation"></span>
+
+        <div class="actions">
+            <button class="button" type="submit">Guardar</button>
+            <a class="button secondary" asp-action="Index">Cancelar</a>
+        </div>
+    </form>
+</div>

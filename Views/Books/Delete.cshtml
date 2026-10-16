@@ -1,0 +1,28 @@
+@model Auth0MvcDemo.DTOs.BookDto
+@{
+    ViewData["Title"] = "Eliminar libro";
+}
+
+<div class="form-page">
+    <span class="eyebrow">API REST</span>
+    <h2>Eliminar libro</h2>
+
+    <div class="card form-card">
+        <p>¿Deseas eliminar este libro?</p>
+        <dl>
+            <dt>Título</dt>
+            <dd>@Model.Title</dd>
+            <dt>Autor</dt>
+            <dd>@Model.Author</dd>
+            <dt>Año</dt>
+            <dd>@Model.PublicationYear</dd>
+        </dl>
+
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+            <div class="actions">
+                <button class="button danger" type="submit">Eliminar</button>
+                <a class="button secondary" asp-action="Index">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
