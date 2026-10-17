@@ -30,3 +30,28 @@ En `appsettings.json` configura Auth0 y la URL de la API:
 ```
 
 Primero inicia `BooksApiDemo` y comprueba `http://localhost:5190/api/books`. Después inicia esta MVC.
+
+## Access Token para las APIs
+
+La aplicación MVC solicita ahora un Access Token de Auth0 para el audience `https://demo-api`.
+
+Configura en `appsettings.json` el `ClientSecret` de la **Regular Web Application** de la MVC (no el Client Secret de la aplicación Machine to Machine utilizada por Users API):
+
+```json
+"Auth0": {
+  "Domain": "dev-angel-java.us.auth0.com",
+  "ClientId": "TU_CLIENT_ID",
+  "ClientSecret": "TU_CLIENT_SECRET_DE_LA_APLICACION_MVC",
+  "Audience": "https://demo-api"
+}
+```
+
+Después de cambiar esta configuración, cierra sesión e inicia sesión nuevamente para que Auth0 emita un Access Token para el nuevo audience.
+
+`BooksApiService` y `UsersApiService` recuperan el `access_token` asociado a la sesión autenticada y lo envían en cada llamada HTTP usando:
+
+```text
+Authorization: Bearer <access_token>
+```
+
+Las APIs todavía deben configurarse para validar ese token. Mientras sigan públicas, recibir el encabezado `Authorization` no cambia su comportamiento actual.

@@ -1,15 +1,26 @@
 using Auth0.AspNetCore.Authentication;
+using Auth0MvcDemo.Filters;
 using Auth0MvcDemo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
-
-builder.Services.AddAuth0WebAppAuthentication(options =>
+builder.Services.AddControllersWithViews(options =>
 {
-    options.Domain = builder.Configuration["Auth0:Domain"]!;
-    options.ClientId = builder.Configuration["Auth0:ClientId"]!;
+    options.Filters.Add<ApiForbiddenExceptionFilter>();
 });
+builder.Services.AddHttpContextAccessor();
+
+builder.Services
+    .AddAuth0WebAppAuthentication(options =>
+    {
+        options.Domain = builder.Configuration["Auth0:Domain"]!;
+        options.ClientId = builder.Configuration["Auth0:ClientId"]!;
+        options.ClientSecret = builder.Configuration["Auth0:ClientSecret"]!;
+    })
+    .WithAccessToken(options =>
+    {
+        options.Audience = builder.Configuration["Auth0:Audience"]!;
+    });
 
 builder.Services.AddHttpClient<IBooksApiService, BooksApiService>(client =>
 {

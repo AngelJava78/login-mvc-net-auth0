@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = "Acceso denegado";
+    var message = ViewData["Message"] as string
+        ?? "No tienes permisos para realizar esta operación.";
+}
+
+<div class="form-page">
+    <span class="eyebrow">403 · FORBIDDEN</span>
+    <h2>Acceso denegado</h2>
+
+    <div class="card form-card">
+        <p>@message</p>
+        <p>Tu sesión es válida, pero tu usuario no cuenta con el permiso requerido para esta operación.</p>
+
+        <div class="actions">
+            <a class="button" asp-controller="Home" asp-action="Index">Ir a Home</a>
+            <a class="button secondary" href="javascript:history.back()">Regresar</a>
+        </div>
+    </div>
+</div>
